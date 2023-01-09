@@ -9,7 +9,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   justify-content: flex-start;
-  background: linear-gradient(0deg, rgba(19,41,61,1) 0%, rgba(237,245,249,1) 63%);
+  background: white;
 }
 
 .reset-button {
@@ -26,9 +26,9 @@ body {
 }
 
 button {
-  background: radial-gradient(circle, rgba(240,230,140,1) 0%, rgba(187,96,33,0.9542191876750701) 100%);
+  background: purple;
   border-radius: 8px;
-  color: #13293d;
+  color: white;
   cursor: pointer;
   font-size: 2em;
   letter-spacing: 0.21px;
@@ -45,8 +45,8 @@ button {
 header {
   padding: 40px;
   text-align: center;
-  background: #13293d;
-  color: #fff;
+  background: white;
+  color: purple;
   border-bottom:30px #879274;
 }
 
@@ -75,9 +75,10 @@ section {
 }
 
 .card {
-  background: radial-gradient(circle, rgba(240,230,140,1) 0%, rgba(187,124,33,0.604079131652661) 100%);
-  border: 1px solid #eceff1;
+  background: white;
+  border: 1px solid purple;
   border-radius: 8px;
+  border-color: purple;
   box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
     rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
   margin: auto;
@@ -91,13 +92,15 @@ section {
 .large-font {
   font-size: 3.5em;
   text-align:center;
+  font-weight: bold;
 }
 
 .timer {
-  height: 240px;
-  padding: 10px;
-  background: #13293d;
-  color: #fff;
+  height: 200px;
+  width: 400px;
+  padding: 0px;
+  background: purple;
+  color: white;
   text-align: center;
 }
 
@@ -137,3 +140,4 @@ section {
     height: 200px;
   }
  
+}

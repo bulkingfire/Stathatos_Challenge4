@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CSS Box Styling</title>
+    <title>Web API Quiz</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
   </head>
   <body>
     <header>
-      <div class= "large-font">Word Guess Game</div>
-      <button class="start-button">Start</button>
+      <div class= "large-font">Coding Quiz Challenge</div>
+      <h2 id = "hide"> Try to anser the following code-related questions within the time limit.
+        Keep in mind that inccorrect answers will penalize your score and time by ten seconds!
+      </h2>
+      
+      <button class="start-button" id ="hide2">Start</button>
+      <p> </p>
+      <div class= "card timer">
+        <div class = "timer-text">
+        <div class="large-font timer-count">0</div>
+        <h3>Seconds Remaining</h3>
+      </div>
     </header>
 
     <main>
       <section>
         <div class="card word-guess">
-          <div class="large-font word-blanks">J _ v _ S c r_ _t</div>
+          <div class="large-font word-blanks">Quiz questions will appear here</div>
         </div>
       </section>
 
@@ -26,14 +36,9 @@
           <h2>Wins: <span class="win">0 </span> </h2>
           <h2>Losses: <span class="lose">0</span></h2>
         </div>
-          <button class="reset-button">Reset Score</button>
+          <button class="reset-button">Clear High Scores</button>
       </div>
-          <div class= "card timer">
-            <div class = "timer-text">
-            <div class="large-font timer-count">10</div>
-            <h3>seconds remaining</h3>
-          </div>
-        
+          
           </div>
         </div>
       </section>
