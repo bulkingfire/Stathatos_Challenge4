@@ -19,6 +19,71 @@ body {
   margin-top: 20px;
 }
 
+.correct {
+  font-size: 22px;
+  height: 50px;
+  width: 270px;
+  margin-top: 25px;
+  padding: 2px;
+}
+.correct2 {
+  font-size: 22px;
+  height: 50px;
+  width: 270px;
+  margin-top: 25px;
+  padding: 2px;
+}
+
+.correct3 {
+  font-size: 22px;
+  height: 50px;
+  width: 270px;
+  margin-top: 25px;
+  padding: 2px;
+
+}.correct4 {
+  font-size: 22px;
+  height: 50px;
+  width: 270px;
+  margin-top: 25px;
+  padding: 2px;
+}
+
+.correct5 {
+  font-size: 22px;
+  height: 50px;
+  width: 270px;
+  margin-top: 25px;
+  padding: 2px;
+}
+
+.Q-button {
+  font-size: 22px;
+  height: 50px;
+  width: 270px;
+  margin-top: 25px;
+  padding: 2px;
+}
+
+#Question1{
+  display: none;
+}
+#Question2{
+  display: none;
+}
+
+#Question3{
+  display: none;
+}
+
+#Question4{
+  display: none;
+}
+
+#Question5{
+  display: none;
+}
+
 .win-loss-container {
   display: flex;
   justify-content: space-between;
@@ -65,7 +130,7 @@ section {
 }
 
 .word-guess {
-  width: 55vw;
+  width: 50vw;
   height: 400px;
 }
 
@@ -86,13 +151,14 @@ section {
 }
 
 .word-blanks {
-  line-height: 360px;
+  line-height: 30px;
 }
 
 .large-font {
-  font-size: 3.5em;
+  font-size: 2.0em;
   text-align:center;
   font-weight: bold;
+  
 }
 
 .timer {
