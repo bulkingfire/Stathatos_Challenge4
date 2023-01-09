@@ -18,6 +18,11 @@ var blanksLetters = [];
 
 // Array of words the user will guess
 var words = ["variable","array", "modulus", "object", "function", "string", "boolean"];
+var Q1 = ["Commonly used data types DO Not Include:"];
+var Q2 = ["The condition in an if/else statement is enclosed with_____."];
+var Q3 = ["Arrays in JavaScript can be used to store ______."];
+var Q4 = ["String values must be enclosed within ____ when being assigned to variables"];
+var Q5 = ['A very useful took used during development and debuggin for printing content to the debugger is'];
 
 // The init function is called when the page loads 
 function init() {
@@ -28,11 +33,26 @@ function init() {
 // The startGame function is called when the start button is clicked
 function startGame() {
   isWin = false;
-  timerCount = 10;
+  timerCount = 75;
+  
   // Prevents start button from being clicked when round is in progress
   startButton.disabled = true;
-  renderBlanks()
+  questionstart()
   startTimer()
+  //Hides the Intro Texsts ------------------------------------------
+  var hide = document.getElementById("hide");
+  if (hide.style.display === "none") {
+    hide.style.display = "block";
+  } else {
+    hide.style.display = "none";
+  }
+  //Hides Start Button------------------------------------------------
+  var hide2 = document.getElementById("hide2");
+  if (hide2.style.display === "none") {
+    hide2.style.display = "block";
+  } else {
+    hide2.style.display = "none";
+  }
 }
 
 // The winGame function is called when the win condition is met
@@ -75,7 +95,7 @@ function startTimer() {
 }
 
 // Creates blanks on screen
-function renderBlanks() {
+function questionstart() {
   // Randomly picks word from words array
   chosenWord = words[Math.floor(Math.random() * words.length)];
   lettersInChosenWord = chosenWord.split("");
