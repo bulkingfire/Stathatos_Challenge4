@@ -3,6 +3,10 @@ var win = document.querySelector(".win");
 var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
+var answerButton1 = document.querySelector(".correct");
+var answerButton2 = document.querySelector(".correct2");
+var answerButton3 = document.querySelector(".correct3");
+var answerButton4 = document.querySelector(".correct4");
 
 var chosenWord = "";
 var numBlanks = 0;
@@ -33,7 +37,7 @@ function init() {
 // The startGame function is called when the start button is clicked
 function startGame() {
   isWin = false;
-  timerCount = 75;
+  timerCount = 76;
   
   // Prevents start button from being clicked when round is in progress
   startButton.disabled = true;
@@ -53,6 +57,8 @@ function startGame() {
   } else {
     hide2.style.display = "none";
   }
+//Shows the first set of answers--------------------------------------
+  showQ1()
 }
 
 // The winGame function is called when the win condition is met
@@ -94,19 +100,53 @@ function startTimer() {
   }, 1000);
 }
 
-// Creates blanks on screen
-function questionstart() {
-  // Randomly picks word from words array
-  chosenWord = words[Math.floor(Math.random() * words.length)];
-  lettersInChosenWord = chosenWord.split("");
-  numBlanks = lettersInChosenWord.length;
-  blanksLetters = []
-  // Uses loop to push blanks to blankLetters array
-  for (var i = 0; i < numBlanks; i++) {
-    blanksLetters.push("_");
-  }
-  // Converts blankLetters array into a string and renders it on the screen
-  wordBlank.textContent = blanksLetters.join(" ")
+
+//function to show the first answers -----------------------
+function showQ1(){
+  var showing = document.getElementById('Question1')
+  showing.style.display = "inline"; 
+}
+
+function showQ2(){
+  var showing = document.getElementById('Question2')
+  showing.style.display = "inline"; 
+}
+
+function showQ3(){
+  var showing = document.getElementById('Question3')
+  showing.style.display = "inline"; 
+}
+
+function showQ4(){
+  var showing = document.getElementById('Question4')
+  showing.style.display = "inline"; 
+}
+
+function showQ5(){
+  var showing = document.getElementById('Question5')
+  showing.style.display = "inline"; 
+}
+
+ //function to get rid of first answers--------------------
+function showQdisappear1(){
+  var showing = document.getElementById('Question1')
+  showing.style.display = "none"; 
+}
+
+//function to get rid of second answers--------------------
+function showQdisappear2(){
+  var showing = document.getElementById('Question2')
+  showing.style.display = "none"; 
+}
+
+function showQdisappear3(){
+  var showing = document.getElementById('Question3')
+  showing.style.display = "none"; 
+}
+
+function showQdisappear4(){
+  var showing = document.getElementById('Question4')
+  showing.style.display = "none"; 
 }
 
 // Updates win count on screen and sets win count to client storage
@@ -154,40 +194,73 @@ function checkWin() {
   }
 }
 
-// Tests if guessed letter is in word and renders it to the screen.
-function checkLetters(letter) {
-  var letterInWord = false;
-  for (var i = 0; i < numBlanks; i++) {
-    if (chosenWord[i] === letter) {
-      letterInWord = true;
-    }
-  }
-  if (letterInWord) {
-    for (var j = 0; j < numBlanks; j++) {
-      if (chosenWord[j] === letter) {
-        blanksLetters[j] = letter;
-      }
-    }
-    wordBlank.textContent = blanksLetters.join(" ");
-  }
+// Start of the game First Question----------------------------------
+function questionstart() {
+  blanksLetters = [Q1];
+  // writes question to the screen
+  wordBlank.textContent = blanksLetters;
+  
 }
 
-// Attach event listener to document to listen for key event
-document.addEventListener("keydown", function(event) {
+// Second Question-----------------------------------------------------
+answerButton1.addEventListener("click", function(event) {
+  blanksLetters = [Q2];
+  showQdisappear1();
+  showQ2();
+  timerCount = timerCount -10;
+  // writes question to the screen
+  wordBlank.textContent = blanksLetters;
   // If the count is zero, exit function
   if (timerCount === 0) {
     return;
   }
-  // Convert all keys to lower case
-  var key = event.key.toLowerCase();
-  var alphabetNumericCharacters = "abcdefghijklmnopqrstuvwxyz0123456789 ".split("");
-  // Test if key pushed is letter
-  if (alphabetNumericCharacters.includes(key)) {
-    var letterGuessed = event.key;
-    checkLetters(letterGuessed)
-    checkWin();
+});
+//----------------------------------------------------------------------
+
+// Third Question-----------------------------------------------------
+answerButton2.addEventListener("click", function(event) {
+  blanksLetters = [Q3];
+  showQdisappear2();
+  showQ3();
+  timerCount = timerCount -10;
+  // writes question to the screen
+  wordBlank.textContent = blanksLetters;
+  // If the count is zero, exit function
+  if (timerCount === 0) {
+    return;
   }
 });
+//----------------------------------------------------------------------
+
+// fourth Question-----------------------------------------------------
+answerButton3.addEventListener("click", function(event) {
+  blanksLetters = [Q4];
+  showQdisappear3();
+  showQ4();
+  timerCount = timerCount -10;
+  // writes question to the screen
+  wordBlank.textContent = blanksLetters;
+  // If the count is zero, exit function
+  if (timerCount === 0) {
+    return;
+  }
+});
+
+// fifth Question-----------------------------------------------------
+answerButton4.addEventListener("click", function(event) {
+  blanksLetters = [Q5];
+  showQdisappear4();
+  showQ5();
+  timerCount = timerCount -10;
+  // writes question to the screen
+  wordBlank.textContent = blanksLetters;
+  // If the count is zero, exit function
+  if (timerCount === 0) {
+    return;
+  }
+});
+
+
 
 // Attach event listener to start button to call startGame function on click
 startButton.addEventListener("click", startGame);
