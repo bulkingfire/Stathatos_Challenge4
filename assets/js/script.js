@@ -3,10 +3,14 @@ var win = document.querySelector(".win");
 var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
-var answerButton1 = document.querySelector(".correct");
-var answerButton2 = document.querySelector(".correct2");
-var answerButton3 = document.querySelector(".correct3");
-var answerButton4 = document.querySelector(".correct4");
+var answerButton1 = document.querySelector(".Q1");
+var answerButton2 = document.querySelector(".Q2");
+var answerButton3 = document.querySelector(".Q3");
+var answerButton4 = document.querySelector(".Q4");
+var answerButton5 = document.querySelector(".Q5");
+
+var correctans = document.querySelector(".right");
+
 
 var chosenWord = "";
 var numBlanks = 0;
@@ -15,6 +19,7 @@ var loseCounter = 0;
 var isWin = false;
 var timer;
 var timerCount;
+var score = 0;
 
 // Arrays used to create blanks and letters on screen
 var lettersInChosenWord = [];
@@ -26,7 +31,8 @@ var Q1 = ["Commonly used data types DO Not Include:"];
 var Q2 = ["The condition in an if/else statement is enclosed with_____."];
 var Q3 = ["Arrays in JavaScript can be used to store ______."];
 var Q4 = ["String values must be enclosed within ____ when being assigned to variables"];
-var Q5 = ['A very useful took used during development and debuggin for printing content to the debugger is'];
+var Q5 = ['A very useful tool used during development and debuggin for printing content to the debugger is'];
+var End = ["Thanks for Playing !"];
 
 // The init function is called when the page loads 
 function init() {
@@ -127,6 +133,11 @@ function showQ5(){
   showing.style.display = "inline"; 
 }
 
+function showQ6(){
+  var showing = document.getElementById('Ending')
+  showing.style.display = "inline"; 
+}
+
  //function to get rid of first answers--------------------
 function showQdisappear1(){
   var showing = document.getElementById('Question1')
@@ -148,6 +159,13 @@ function showQdisappear4(){
   var showing = document.getElementById('Question4')
   showing.style.display = "none"; 
 }
+
+
+function showQdisappear5(){
+  var showing = document.getElementById('Question5')
+  showing.style.display = "none"; 
+}
+
 
 // Updates win count on screen and sets win count to client storage
 function setWins() {
@@ -194,6 +212,8 @@ function checkWin() {
   }
 }
 
+
+
 // Start of the game First Question----------------------------------
 function questionstart() {
   blanksLetters = [Q1];
@@ -202,11 +222,13 @@ function questionstart() {
   
 }
 
+
 // Second Question-----------------------------------------------------
 answerButton1.addEventListener("click", function(event) {
   blanksLetters = [Q2];
   showQdisappear1();
   showQ2();
+
   timerCount = timerCount -10;
   // writes question to the screen
   wordBlank.textContent = blanksLetters;
@@ -214,9 +236,12 @@ answerButton1.addEventListener("click", function(event) {
   if (timerCount === 0) {
     return;
   }
+  
+ 
+
+  
 });
 //----------------------------------------------------------------------
-
 // Third Question-----------------------------------------------------
 answerButton2.addEventListener("click", function(event) {
   blanksLetters = [Q3];
@@ -260,7 +285,26 @@ answerButton4.addEventListener("click", function(event) {
   }
 });
 
+// Ending Question-----------------------------------------------------
+answerButton5.addEventListener("click", function(event) {
+  blanksLetters = [score];
+  showQdisappear5();
+  showQ6();
+  timerCount = timerCount -10;
+  // writes question to the screen
+  wordBlank.textContent = blanksLetters;
+  // If the count is zero, exit function
+  if (timerCount === 0) {
+    return;
+  }
+});
 
+
+
+correctans.addEventListener("click", function(event) {
+  score++;
+  
+});
 
 // Attach event listener to start button to call startGame function on click
 startButton.addEventListener("click", startGame);
