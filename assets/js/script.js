@@ -9,11 +9,14 @@ var answerButton3 = document.querySelector(".Q3");
 var answerButton4 = document.querySelector(".Q4");
 var answerButton5 = document.querySelector(".Q5");
 
-var correctans = document.querySelector(".right");
+var correctans = document.querySelector(".right1");
+var correctans2 = document.querySelector(".right2");
+var correctans3 = document.querySelector(".right3");
+var correctans4 = document.querySelector(".right4");
+var correctans5 = document.querySelector(".right5");
 
 
 var chosenWord = "";
-var numBlanks = 0;
 var winCounter = 0;
 var loseCounter = 0;
 var isWin = false;
@@ -22,11 +25,9 @@ var timerCount;
 var score = 0;
 
 // Arrays used to create blanks and letters on screen
-var lettersInChosenWord = [];
-var blanksLetters = [];
+var topstatement = [];
 
 // Array of words the user will guess
-var words = ["variable","array", "modulus", "object", "function", "string", "boolean"];
 var Q1 = ["Commonly used data types DO Not Include:"];
 var Q2 = ["The condition in an if/else statement is enclosed with_____."];
 var Q3 = ["Arrays in JavaScript can be used to store ______."];
@@ -44,12 +45,10 @@ function init() {
 function startGame() {
   isWin = false;
   timerCount = 76;
-  
-  // Prevents start button from being clicked when round is in progress
-  startButton.disabled = true;
+ 
   questionstart()
   startTimer()
-  //Hides the Intro Texsts ------------------------------------------
+  //Hides the Intro Texts ------------------------------------------
   var hide = document.getElementById("hide");
   if (hide.style.display === "none") {
     hide.style.display = "block";
@@ -67,23 +66,6 @@ function startGame() {
   showQ1()
 }
 
-// The winGame function is called when the win condition is met
-function winGame() {
-  wordBlank.textContent = "YOU WON!!!🏆 ";
-  winCounter++
-  startButton.disabled = false;
-  setWins()
-}
-
-// The loseGame function is called when timer reaches 0
-function loseGame() {
-  wordBlank.textContent = "GAME OVER";
-  loseCounter++
-  startButton.disabled = false;
-  setLosses()
-}
-
-// The setTimer function starts and stops the timer and triggers winGame() and loseGame()
 function startTimer() {
   // Sets timer
   timer = setInterval(function() {
@@ -94,20 +76,18 @@ function startTimer() {
       if (isWin && timerCount > 0) {
         // Clears interval and stops timer
         clearInterval(timer);
-        winGame();
       }
     }
     // Tests if time has run out
     if (timerCount === 0) {
       // Clears interval
       clearInterval(timer);
-      loseGame();
     }
   }, 1000);
 }
 
 
-//function to show the first answers -----------------------
+//function to show the answers -----------------------
 function showQ1(){
   var showing = document.getElementById('Question1')
   showing.style.display = "inline"; 
@@ -138,13 +118,12 @@ function showQ6(){
   showing.style.display = "inline"; 
 }
 
- //function to get rid of first answers--------------------
+ //function to get rid of the answers--------------------
 function showQdisappear1(){
   var showing = document.getElementById('Question1')
   showing.style.display = "none"; 
 }
 
-//function to get rid of second answers--------------------
 function showQdisappear2(){
   var showing = document.getElementById('Question2')
   showing.style.display = "none"; 
@@ -204,34 +183,24 @@ function getlosses() {
   lose.textContent = loseCounter;
 }
 
-function checkWin() {
-  // If the word equals the blankLetters array when converted to string, set isWin to true
-  if (chosenWord === blanksLetters.join("")) {
-    // This value is used in the timer function to test if win condition is met
-    isWin = true;
-  }
-}
-
-
-
 // Start of the game First Question----------------------------------
 function questionstart() {
-  blanksLetters = [Q1];
+  topstatement = [Q1];
   // writes question to the screen
-  wordBlank.textContent = blanksLetters;
+  wordBlank.textContent = topstatement;
   
 }
 
 
 // Second Question-----------------------------------------------------
 answerButton1.addEventListener("click", function(event) {
-  blanksLetters = [Q2];
+  topstatement = [Q2];
   showQdisappear1();
   showQ2();
 
   timerCount = timerCount -10;
   // writes question to the screen
-  wordBlank.textContent = blanksLetters;
+  wordBlank.textContent = topstatement;
   // If the count is zero, exit function
   if (timerCount === 0) {
     return;
@@ -244,12 +213,12 @@ answerButton1.addEventListener("click", function(event) {
 //----------------------------------------------------------------------
 // Third Question-----------------------------------------------------
 answerButton2.addEventListener("click", function(event) {
-  blanksLetters = [Q3];
+  topstatement = [Q3];
   showQdisappear2();
   showQ3();
   timerCount = timerCount -10;
   // writes question to the screen
-  wordBlank.textContent = blanksLetters;
+  wordBlank.textContent = topstatement;
   // If the count is zero, exit function
   if (timerCount === 0) {
     return;
@@ -259,12 +228,12 @@ answerButton2.addEventListener("click", function(event) {
 
 // fourth Question-----------------------------------------------------
 answerButton3.addEventListener("click", function(event) {
-  blanksLetters = [Q4];
+  topstatement = [Q4];
   showQdisappear3();
   showQ4();
   timerCount = timerCount -10;
   // writes question to the screen
-  wordBlank.textContent = blanksLetters;
+  wordBlank.textContent = topstatement;
   // If the count is zero, exit function
   if (timerCount === 0) {
     return;
@@ -273,12 +242,12 @@ answerButton3.addEventListener("click", function(event) {
 
 // fifth Question-----------------------------------------------------
 answerButton4.addEventListener("click", function(event) {
-  blanksLetters = [Q5];
+  topstatement = [Q5];
   showQdisappear4();
   showQ5();
   timerCount = timerCount -10;
   // writes question to the screen
-  wordBlank.textContent = blanksLetters;
+  wordBlank.textContent = topstatement;
   // If the count is zero, exit function
   if (timerCount === 0) {
     return;
@@ -287,24 +256,40 @@ answerButton4.addEventListener("click", function(event) {
 
 // Ending Question-----------------------------------------------------
 answerButton5.addEventListener("click", function(event) {
-  blanksLetters = [score];
+  finalscore = score*20;
+  topstatement = [finalscore];
   showQdisappear5();
   showQ6();
   timerCount = timerCount -10;
   // writes question to the screen
-  wordBlank.textContent = blanksLetters;
+  wordBlank.textContent = topstatement;
   // If the count is zero, exit function
   if (timerCount === 0) {
     return;
   }
 });
 
-
-
+//Checking the score----------------------------------------------------
 correctans.addEventListener("click", function(event) {
   score++;
-  
 });
+
+correctans2.addEventListener("click", function(event) {
+  score++;
+});
+
+correctans3.addEventListener("click", function(event) {
+  score++;
+});
+
+correctans4.addEventListener("click", function(event) {
+  score++;
+});
+
+correctans5.addEventListener("click", function(event) {
+  score++;
+});
+//--------------------------------------------------------------------------
 
 // Attach event listener to start button to call startGame function on click
 startButton.addEventListener("click", startGame);
