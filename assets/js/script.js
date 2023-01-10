@@ -1,7 +1,6 @@
 var wordBlank = document.querySelector(".word-blanks");
 var finalword = document.querySelector(".adding");
-var highscore = document.querySelector(".win");
-var lose = document.querySelector(".lose");
+var highscore = document.querySelector(".score");
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
 var answerButton1 = document.querySelector(".Q1");
@@ -18,9 +17,6 @@ var correctans5 = document.querySelector(".right5");
 
 var reset115 = document.querySelector(".reset");
 var sub = document.querySelector(".submit");
-
-var scorecounter = 0;
-var loseCounter = 0;
 
 var timer;
 var timerCount;
@@ -42,11 +38,6 @@ var Q5 = [
 ];
 var empty = [];
 var End = ["Thanks for Playing !"];
-
-// The init function is called when the page loads
-function init() {
-  Highestscores();
-}
 
 // The startGame function is called when the start button is clicked
 function startGame() {
@@ -277,50 +268,28 @@ reset115.addEventListener("click", function (event) {
 });
 //--------------------------------------------------------------------
 
-// Updates win count on screen and sets win count to client storage
-function setsScores() {
-  highscore.textContent = scorecounter;
-  localStorage.setItem("highest score", scorecounter);
-}
-// These functions are used by init
-function Highestscores() {
-  // Get stored value from client storage, if it exists
-  var storedscores = localStorage.getItem("highest score");
-  // If stored value doesn't exist, set counter to 0
-  if (storedscores === null) {
-    scorecounter = 'None';
-  } else {
-    // If a value is retrieved from client storage set the winCounter to that value
-    scorecounter = storedscores;
-  }
-  //Render win count to page
-  highscore.textContent = scorecounter;
-}
-//------------------------------------------------------------------------------------------------------------------
+
+var initials = document.querySelector("#userInput");
 
 sub.addEventListener("click", function (event) {
-  var input = document.getElementById("userInput").value;
-  input = scorecounter;
-  highscore.textContent = scorecounter;
+  var user = {
+    initials : initials.value,
+    finalscore
+  }
+  highscore.textContent = JSON.stringify(user);
+  localStorage.setItem("person", JSON.stringify(user));
 });
 
 
 // Attach event listener to start button to call startGame function on click
 startButton.addEventListener("click", startGame);
 
-// Calls init() so that it fires when page opened
-init();
-
 // Bonus: Add reset button
 var resetButton = document.querySelector(".reset-button");
 
 function resetGame() {
-  // Resets win and loss counts
-  scorecounter = 0;
-  loseCounter = 0;
-  // Renders win and loss counts and sets them into client storage
-  setsScores();
-  setLosses();
+  localStorage.clear;
+  highscore.textContent = 'None';
 }
 // Attaches event listener to button
 resetButton.addEventListener("click", resetGame);
