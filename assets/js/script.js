@@ -225,22 +225,27 @@ answerButton5.addEventListener("click", function (event) {
 //Checking the score----------------------------------------------------
 correctans.addEventListener("click", function (event) {
   score++;
+  timerCount = timerCount + 10;
 });
 
 correctans2.addEventListener("click", function (event) {
   score++;
+  timerCount = timerCount + 10;
 });
 
 correctans3.addEventListener("click", function (event) {
   score++;
+  timerCount = timerCount + 10;
 });
 
 correctans4.addEventListener("click", function (event) {
   score++;
+  timerCount = timerCount + 10;
 });
 
 correctans5.addEventListener("click", function (event) {
   score++;
+  timerCount = timerCount + 10;
 });
 //--------------------------------------------------------------------------
 
