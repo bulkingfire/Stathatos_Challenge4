@@ -10,7 +10,7 @@
     <header>
       <div class= "large-font">Coding Quiz Challenge</div>
       <h2 id = "hide"> Try to anser the following code-related questions within the time limit.
-        Keep in mind that inccorrect answers will penalize your score and time by ten seconds!
+        Keep in mind that incorrect answers will penalize your score and time by ten seconds! Each Question is worth 20 points.
       </h2>
       
       <button class="start-button" id ="hide2">Start</button>
@@ -77,10 +77,11 @@
           </div>
 
           <div id="Ending">
-            <h2>Your final score is</h2>
+            <h2 class = "adding">Your final score is</h2>
             <label for="last-name">Enter Initials: </label>
-            <input type="text" class="form-input" name="last-name" />
-            <button class="Q-button">Submit</button>
+            <input id = "userInput" type="text" class="form-input" name="last-name" />
+            <button class="submit">Submit</button>
+            <button class="reset">Reset</button>
           </div>
         </div>
       </section>
@@ -89,8 +90,7 @@
         <div class="card results">
           <div class = "win-loss-container">
           <div>
-          <h2>Wins: <span class="win">0 </span> </h2>
-          <h2>Losses: <span class="lose">0</span></h2>
+          <h2>Highest Scores: <span class="win">None </span> </h2>
         </div>
           <button class="reset-button">Clear High Scores</button>
       </div>

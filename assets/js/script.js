@@ -1,5 +1,6 @@
 var wordBlank = document.querySelector(".word-blanks");
-var win = document.querySelector(".win");
+var finalword = document.querySelector(".adding");
+var highscore = document.querySelector(".win");
 var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
@@ -15,11 +16,12 @@ var correctans3 = document.querySelector(".right3");
 var correctans4 = document.querySelector(".right4");
 var correctans5 = document.querySelector(".right5");
 
+var reset115 = document.querySelector(".reset");
+var sub = document.querySelector(".submit");
 
-var chosenWord = "";
-var winCounter = 0;
+var scorecounter = 0;
 var loseCounter = 0;
-var isWin = false;
+
 var timer;
 var timerCount;
 var score = 0;
@@ -28,26 +30,30 @@ var score = 0;
 var topstatement = [];
 
 // Array of words the user will guess
+var old = ["Quiz questions will appear here"];
 var Q1 = ["Commonly used data types DO Not Include:"];
 var Q2 = ["The condition in an if/else statement is enclosed with_____."];
 var Q3 = ["Arrays in JavaScript can be used to store ______."];
-var Q4 = ["String values must be enclosed within ____ when being assigned to variables"];
-var Q5 = ['A very useful tool used during development and debuggin for printing content to the debugger is'];
+var Q4 = [
+  "String values must be enclosed within ____ when being assigned to variables",
+];
+var Q5 = [
+  "A very useful tool used during development and debuggin for printing content to the debugger is",
+];
+var empty = [];
 var End = ["Thanks for Playing !"];
 
-// The init function is called when the page loads 
+// The init function is called when the page loads
 function init() {
-  getWins();
-  getlosses();
+  Highestscores();
 }
 
 // The startGame function is called when the start button is clicked
 function startGame() {
-  isWin = false;
+  
   timerCount = 76;
- 
-  questionstart()
-  startTimer()
+  questionstart();
+  startTimer();
   //Hides the Intro Texts ------------------------------------------
   var hide = document.getElementById("hide");
   if (hide.style.display === "none") {
@@ -62,21 +68,17 @@ function startGame() {
   } else {
     hide2.style.display = "none";
   }
-//Shows the first set of answers--------------------------------------
-  showQ1()
+  //Shows the first set of answers--------------------------------------
+  showQ1();
 }
 
 function startTimer() {
   // Sets timer
-  timer = setInterval(function() {
+  timer = setInterval(function () {
     timerCount--;
     timerElement.textContent = timerCount;
     if (timerCount >= 0) {
-      // Tests if win condition is met
-      if (isWin && timerCount > 0) {
-        // Clears interval and stops timer
-        clearInterval(timer);
-      }
+    
     }
     // Tests if time has run out
     if (timerCount === 0) {
@@ -86,101 +88,66 @@ function startTimer() {
   }, 1000);
 }
 
-
 //function to show the answers -----------------------
-function showQ1(){
-  var showing = document.getElementById('Question1')
-  showing.style.display = "inline"; 
+function showQ1() {
+  var showing = document.getElementById("Question1");
+  showing.style.display = "inline";
 }
 
-function showQ2(){
-  var showing = document.getElementById('Question2')
-  showing.style.display = "inline"; 
+function showQ2() {
+  var showing = document.getElementById("Question2");
+  showing.style.display = "inline";
 }
 
-function showQ3(){
-  var showing = document.getElementById('Question3')
-  showing.style.display = "inline"; 
+function showQ3() {
+  var showing = document.getElementById("Question3");
+  showing.style.display = "inline";
 }
 
-function showQ4(){
-  var showing = document.getElementById('Question4')
-  showing.style.display = "inline"; 
+function showQ4() {
+  var showing = document.getElementById("Question4");
+  showing.style.display = "inline";
 }
 
-function showQ5(){
-  var showing = document.getElementById('Question5')
-  showing.style.display = "inline"; 
+function showQ5() {
+  var showing = document.getElementById("Question5");
+  showing.style.display = "inline";
 }
 
-function showQ6(){
-  var showing = document.getElementById('Ending')
-  showing.style.display = "inline"; 
+function showQ6() {
+  var showing = document.getElementById("Ending");
+  showing.style.display = "inline";
 }
 
- //function to get rid of the answers--------------------
-function showQdisappear1(){
-  var showing = document.getElementById('Question1')
-  showing.style.display = "none"; 
+//function to get rid of the answers--------------------
+function showQdisappear1() {
+  var showing = document.getElementById("Question1");
+  showing.style.display = "none";
 }
 
-function showQdisappear2(){
-  var showing = document.getElementById('Question2')
-  showing.style.display = "none"; 
+function showQdisappear2() {
+  var showing = document.getElementById("Question2");
+  showing.style.display = "none";
 }
 
-function showQdisappear3(){
-  var showing = document.getElementById('Question3')
-  showing.style.display = "none"; 
+function showQdisappear3() {
+  var showing = document.getElementById("Question3");
+  showing.style.display = "none";
 }
 
-function showQdisappear4(){
-  var showing = document.getElementById('Question4')
-  showing.style.display = "none"; 
+function showQdisappear4() {
+  var showing = document.getElementById("Question4");
+  showing.style.display = "none";
 }
 
-
-function showQdisappear5(){
-  var showing = document.getElementById('Question5')
-  showing.style.display = "none"; 
+function showQdisappear5() {
+  var showing = document.getElementById("Question5");
+  showing.style.display = "none";
 }
 
-
-// Updates win count on screen and sets win count to client storage
-function setWins() {
-  win.textContent = winCounter;
-  localStorage.setItem("winCount", winCounter);
-}
-
-// Updates lose count on screen and sets lose count to client storage
-function setLosses() {
-  lose.textContent = loseCounter;
-  localStorage.setItem("loseCount", loseCounter);
-}
-
-// These functions are used by init
-function getWins() {
-  // Get stored value from client storage, if it exists
-  var storedWins = localStorage.getItem("winCount");
-  // If stored value doesn't exist, set counter to 0
-  if (storedWins === null) {
-    winCounter = 0;
-  } else {
-    // If a value is retrieved from client storage set the winCounter to that value
-    winCounter = storedWins;
-  }
-  //Render win count to page
-  win.textContent = winCounter;
-}
-
-function getlosses() {
-  var storedLosses = localStorage.getItem("loseCount");
-  if (storedLosses === null) {
-    loseCounter = 0;
-  } else {
-    loseCounter = storedLosses;
-  }
-  lose.textContent = loseCounter;
+function showQdisappear6() {
+  var showing = document.getElementById("Ending");
+  showing.style.display = "none";
 }
 
 // Start of the game First Question----------------------------------
@@ -188,35 +155,29 @@ function questionstart() {
   topstatement = [Q1];
   // writes question to the screen
   wordBlank.textContent = topstatement;
-  
 }
 
-
 // Second Question-----------------------------------------------------
-answerButton1.addEventListener("click", function(event) {
+answerButton1.addEventListener("click", function (event) {
   topstatement = [Q2];
   showQdisappear1();
   showQ2();
 
-  timerCount = timerCount -10;
+  timerCount = timerCount - 10;
   // writes question to the screen
   wordBlank.textContent = topstatement;
   // If the count is zero, exit function
   if (timerCount === 0) {
     return;
   }
-  
- 
-
-  
 });
 //----------------------------------------------------------------------
 // Third Question-----------------------------------------------------
-answerButton2.addEventListener("click", function(event) {
+answerButton2.addEventListener("click", function (event) {
   topstatement = [Q3];
   showQdisappear2();
   showQ3();
-  timerCount = timerCount -10;
+  timerCount = timerCount - 10;
   // writes question to the screen
   wordBlank.textContent = topstatement;
   // If the count is zero, exit function
@@ -227,11 +188,11 @@ answerButton2.addEventListener("click", function(event) {
 //----------------------------------------------------------------------
 
 // fourth Question-----------------------------------------------------
-answerButton3.addEventListener("click", function(event) {
+answerButton3.addEventListener("click", function (event) {
   topstatement = [Q4];
   showQdisappear3();
   showQ4();
-  timerCount = timerCount -10;
+  timerCount = timerCount - 10;
   // writes question to the screen
   wordBlank.textContent = topstatement;
   // If the count is zero, exit function
@@ -241,11 +202,11 @@ answerButton3.addEventListener("click", function(event) {
 });
 
 // fifth Question-----------------------------------------------------
-answerButton4.addEventListener("click", function(event) {
+answerButton4.addEventListener("click", function (event) {
   topstatement = [Q5];
   showQdisappear4();
   showQ5();
-  timerCount = timerCount -10;
+  timerCount = timerCount - 10;
   // writes question to the screen
   wordBlank.textContent = topstatement;
   // If the count is zero, exit function
@@ -255,41 +216,94 @@ answerButton4.addEventListener("click", function(event) {
 });
 
 // Ending Question-----------------------------------------------------
-answerButton5.addEventListener("click", function(event) {
-  finalscore = score*20;
-  topstatement = [finalscore];
+answerButton5.addEventListener("click", function (event) {
+  finalscore = score * 20;
+  topstatement = [empty];
   showQdisappear5();
   showQ6();
-  timerCount = timerCount -10;
+  timerCount = timerCount - 10;
   // writes question to the screen
   wordBlank.textContent = topstatement;
+  finalword.textContent = "Your final score is " + [finalscore];
   // If the count is zero, exit function
-  if (timerCount === 0) {
-    return;
-  }
+  clearInterval(timer);
+  timerCount = 0;
+  timerElement.textContent = timerCount;
 });
 
 //Checking the score----------------------------------------------------
-correctans.addEventListener("click", function(event) {
+correctans.addEventListener("click", function (event) {
   score++;
 });
 
-correctans2.addEventListener("click", function(event) {
+correctans2.addEventListener("click", function (event) {
   score++;
 });
 
-correctans3.addEventListener("click", function(event) {
+correctans3.addEventListener("click", function (event) {
   score++;
 });
 
-correctans4.addEventListener("click", function(event) {
+correctans4.addEventListener("click", function (event) {
   score++;
 });
 
-correctans5.addEventListener("click", function(event) {
+correctans5.addEventListener("click", function (event) {
   score++;
 });
 //--------------------------------------------------------------------------
+
+reset115.addEventListener("click", function (event) {
+  topstatement = [old];
+  wordBlank.textContent = topstatement;
+  showQdisappear6();
+  //Hides Start Button------------------------------------------------
+  var hide2 = document.getElementById("hide2");
+  if (hide2.style.display === "none") {
+    hide2.style.display = "inline";
+  } else {
+    hide2.style.display = "none";
+  }
+
+  //Hides the Intro Texts ------------------------------------------
+  var hide = document.getElementById("hide");
+  if (hide.style.display === "none") {
+    hide.style.display = "block";
+  } else {
+    hide.style.display = "none";
+  }
+
+  score = 0;
+});
+//--------------------------------------------------------------------
+
+// Updates win count on screen and sets win count to client storage
+function setsScores() {
+  highscore.textContent = scorecounter;
+  localStorage.setItem("highest score", scorecounter);
+}
+// These functions are used by init
+function Highestscores() {
+  // Get stored value from client storage, if it exists
+  var storedscores = localStorage.getItem("highest score");
+  // If stored value doesn't exist, set counter to 0
+  if (storedscores === null) {
+    scorecounter = 'None';
+  } else {
+    // If a value is retrieved from client storage set the winCounter to that value
+    scorecounter = storedscores;
+  }
+  //Render win count to page
+  highscore.textContent = scorecounter;
+}
+//------------------------------------------------------------------------------------------------------------------
+
+sub.addEventListener("click", function (event) {
+  var input = document.getElementById("userInput").value;
+  input = scorecounter;
+  highscore.textContent = scorecounter;
+});
+
 
 // Attach event listener to start button to call startGame function on click
 startButton.addEventListener("click", startGame);
@@ -302,11 +316,11 @@ var resetButton = document.querySelector(".reset-button");
 
 function resetGame() {
   // Resets win and loss counts
-  winCounter = 0;
+  scorecounter = 0;
   loseCounter = 0;
   // Renders win and loss counts and sets them into client storage
-  setWins()
-  setLosses()
+  setsScores();
+  setLosses();
 }
 // Attaches event listener to button
 resetButton.addEventListener("click", resetGame);
