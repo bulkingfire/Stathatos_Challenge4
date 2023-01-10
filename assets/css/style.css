@@ -65,7 +65,54 @@ body {
   padding: 2px;
 }
 
-.right {
+.submit {
+  font-size: 22px;
+  height: 50px;
+  width: 270px;
+  margin-top: 25px;
+  padding: 2px;
+}
+
+.reset {
+  font-size: 22px;
+  height: 50px;
+  width: 270px;
+  margin-top: 25px;
+  padding: 2px;
+}
+.right1 {
+  font-size: 22px;
+  height: 50px;
+  width: 270px;
+  margin-top: 25px;
+  padding: 2px;
+}
+
+.right2 {
+  font-size: 22px;
+  height: 50px;
+  width: 270px;
+  margin-top: 25px;
+  padding: 2px;
+}
+
+.right3 {
+  font-size: 22px;
+  height: 50px;
+  width: 270px;
+  margin-top: 25px;
+  padding: 2px;
+}
+
+.right4 {
+  font-size: 22px;
+  height: 50px;
+  width: 270px;
+  margin-top: 25px;
+  padding: 2px;
+}
+
+.right5 {
   font-size: 22px;
   height: 50px;
   width: 270px;
